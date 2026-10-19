@@ -1,0 +1,17 @@
+# .NET
+bin/
+obj/
+*.user
+.vs/
+
+# Node
+node_modules/
+dist/
+
+# Editors / OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+program.cs
+appsettings.json
