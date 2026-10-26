@@ -71,3 +71,11 @@ public class CommentCreateDtoValidator : AbstractValidator<CommentCreateDto>
         RuleFor(x => x.Content).NotEmpty().MaximumLength(1000);
     }
 }
+
+public class SubTaskCreateDtoValidator : AbstractValidator<SubTaskCreateDto>
+{
+    public SubTaskCreateDtoValidator()
+    {
+        RuleFor(x => x.Title).NotEmpty().MaximumLength(200);
+    }
+}

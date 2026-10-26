@@ -65,7 +65,7 @@ export default function Login() {
         <p className="auth-switch">
           No account? <Link to="/register">Create one</Link>
         </p>
-        <div className="demo-box">
+        {/* <div className="demo-box">
           <strong>Demo accounts</strong>
           <button type="button" onClick={() => fillDemo('admin@taskmanager.com', 'Admin@123')}>
             Admin — admin@taskmanager.com
@@ -73,7 +73,7 @@ export default function Login() {
           <button type="button" onClick={() => fillDemo('john@taskmanager.com', 'John@123')}>
             Member — john@taskmanager.com
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

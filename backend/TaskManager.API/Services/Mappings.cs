@@ -23,4 +23,6 @@ public static class Mappings
         t.UpdatedAt);
 
     public static CommentDto ToDto(this Comment c) => new(c.Id, c.Content, c.User.ToDto(), c.CreatedAt);
-}
+
+
+    public static SubTaskDto ToDto(this SubTask st) => new(st.Id, st.Title, st.IsDone);}

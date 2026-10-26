@@ -76,12 +76,7 @@ npm run dev
 ```
 Open http://localhost:5173
 
-### Demo accounts
-| Role   | Email                   | Password   |
-|--------|-------------------------|------------|
-| Admin  | admin@taskmanager.com   | Admin@123  |
-| Member | john@taskmanager.com    | John@123   |
-| Member | nimali@taskmanager.com  | Nimali@123 |
+
 
 ## API Endpoints
 | Method | Endpoint | Description |

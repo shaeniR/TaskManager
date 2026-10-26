@@ -26,6 +26,8 @@ public class ProjectService : IProjectService
 
     public async Task<List<ProjectSummaryDto>> GetProjectsAsync(int userId, bool isAdmin)
     {
+        //get the projects from the database using Entity Framework Core. 
+        // I use AsNoTracking() because I only need to read the data, not update it.
         var query = _db.Projects.AsNoTracking();
         if (!isAdmin)
             query = query.Where(p => p.Members.Any(m => m.UserId == userId));

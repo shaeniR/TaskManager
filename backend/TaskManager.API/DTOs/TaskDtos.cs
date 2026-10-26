@@ -47,3 +47,13 @@ public class TaskQueryParams
 public record CommentCreateDto(string Content);
 
 public record CommentDto(int Id, string Content, UserDto User, DateTime CreatedAt);
+
+
+public record SubTaskCreateDto(
+    string Title);
+
+public record SubTaskDto(
+    int Id,
+    string Title,
+    bool IsDone
+   );

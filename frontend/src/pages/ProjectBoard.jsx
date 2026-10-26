@@ -69,7 +69,7 @@ export default function ProjectBoard() {
     setPage(1);
   };
 
-  // ----- Drag & drop between columns -----
+  // Drag & drop between columns 
   const onDragStart = (e, task) => e.dataTransfer.setData('taskId', String(task.id));
 
   const onDrop = async (e, status) => {

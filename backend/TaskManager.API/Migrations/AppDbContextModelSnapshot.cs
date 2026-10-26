@@ -101,6 +101,35 @@ namespace TaskManager.API.Migrations
                     b.ToTable("ProjectMembers");
                 });
 
+            modelBuilder.Entity("TaskManager.API.Models.SubTask", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("IsDone")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("TaskId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TaskId");
+
+                    b.ToTable("SubTasks");
+                });
+
             modelBuilder.Entity("TaskManager.API.Models.TaskItem", b =>
                 {
                     b.Property<int>("Id")
@@ -239,6 +268,17 @@ namespace TaskManager.API.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TaskManager.API.Models.SubTask", b =>
+                {
+                    b.HasOne("TaskManager.API.Models.TaskItem", "Task")
+                        .WithMany("SubTasks")
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Task");
+                });
+
             modelBuilder.Entity("TaskManager.API.Models.TaskItem", b =>
                 {
                     b.HasOne("TaskManager.API.Models.User", "AssignedTo")
@@ -267,6 +307,8 @@ namespace TaskManager.API.Migrations
             modelBuilder.Entity("TaskManager.API.Models.TaskItem", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("SubTasks");
                 });
 
             modelBuilder.Entity("TaskManager.API.Models.User", b =>
