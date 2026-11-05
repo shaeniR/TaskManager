@@ -27,7 +27,7 @@ export default function Login() {
     }
   };
 
-  const fillDemo = (email, password) => setForm({ email, password });
+ 
 
   return (
     <div className="auth-page">
