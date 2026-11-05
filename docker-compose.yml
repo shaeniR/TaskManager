@@ -1,0 +1,43 @@
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: taskmanager_db
+    ports:
+      - "3307:3306"            # 3307: oyage local MySQL80 eka 3306 use karana nisa
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      retries: 20
+
+  api:
+    build: ./backend/TaskManager.API
+    ports:
+      - "5000:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development      # show Swagger
+      ConnectionStrings__DefaultConnection: "Server=db;Port=3306;Database=taskmanager_db;User=root;Password=${MYSQL_ROOT_PASSWORD};"
+      Jwt__Key: ${JWT_KEY}
+      Jwt__Issuer: TaskManager.API
+      Jwt__Audience: TaskManager.Client
+      Jwt__ExpiresInMinutes: "240"
+      AllowedOrigins__0: http://localhost:3000
+    depends_on:
+      db:
+        condition: service_healthy             # waiting to ready MySQL 
+
+  web:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:5000/api
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+
+volumes:
+  mysql-data:

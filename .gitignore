@@ -13,5 +13,4 @@ dist/
 .DS_Store
 Thumbs.db
 
-program.cs
-appsettings.json
+.env
